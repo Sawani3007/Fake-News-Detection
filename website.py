@@ -3,6 +3,7 @@ import numpy as np
 import re
 import pandas as pd
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -43,7 +44,6 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, stratif
 # Fit logistic regression model
 model = LogisticRegression()
 model.fit(X_train,Y_train)
-
 
 # website
 st.title('Fake News Detector')
