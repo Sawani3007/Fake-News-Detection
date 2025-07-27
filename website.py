@@ -3,13 +3,15 @@ import numpy as np
 import re
 import pandas as pd
 import nltk
-import nltk
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords  
+
 try:
     stopwords.words('english')
 except LookupError:
     nltk.download('stopwords')
 
-from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
@@ -17,7 +19,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # Load data
-news_df = pd.read_csv('train.csv')
+news_df = pd.read_csv('train.csv', on_bad_lines='skip')
 news_df = news_df.fillna(' ')
 news_df['content'] = news_df['author'] + ' ' + news_df['title']
 X = news_df.drop('label', axis=1)
